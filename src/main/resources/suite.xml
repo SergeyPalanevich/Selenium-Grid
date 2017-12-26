@@ -3,8 +3,8 @@
 <suite name="Paralel test" parallel="classes" thread-count="2">
     <test name="Smoke Tests">
         <classes>
-            <class name="com.epam.grid.features.google.tests.SearchTest" />
-            <class name="com.epam.grid.features.google.tests.SearchSecondTest" />
+            <class name="com.epam.grid.features.google.tests.FirefoxTest" />
+            <class name="com.epam.grid.features.google.tests.ChromeTest" />
         </classes>
     </test>
 </suite>

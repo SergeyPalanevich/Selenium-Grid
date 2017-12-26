@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import static com.epam.grid.core.driver.DriverManager.closeDriver;
 import static com.epam.grid.core.driver.DriverManager.getDriver;
 
-public class SearchTest {
+public class ChromeTest {
     private static final String EPAM = "EPAM";
     private static final String URL = "https://google.com";
     private static WebDriver driver;
@@ -20,7 +20,7 @@ public class SearchTest {
     @DataProvider(name = "Browser")
     public static Object[][] credentials() {
         return new Object[][]{
-                {DriverTypes.FIREFOX}
+                {DriverTypes.CHROME}
         };
     }
 
