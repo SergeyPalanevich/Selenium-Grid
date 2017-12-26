@@ -5,9 +5,11 @@ import com.epam.grid.features.google.pages.HomePage;
 import com.epam.grid.features.google.pages.ResultPage;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import static com.epam.grid.core.driver.DriverManager.closeDriver;
 import static com.epam.grid.core.driver.DriverManager.getDriver;
 
 public class FirefoxTest {
@@ -31,5 +33,10 @@ public class FirefoxTest {
         Assert.assertTrue(result.checkTitle());
     }
 
-
+    @AfterMethod()
+    public void cleanUp() {
+        driver.close();
+        driver = null;
+        closeDriver();
+    }
 }
