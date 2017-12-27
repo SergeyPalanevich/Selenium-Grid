@@ -12,9 +12,7 @@ public class DriverManager {
         return driver;
     }
 
-    public void closeDriver() {
-//        driver.quit();
-        driver.close();
-        driver = null;
+    public void quitDriver() {
+        driver.quit();
     }
 }

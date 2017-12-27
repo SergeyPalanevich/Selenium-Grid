@@ -10,8 +10,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-
-
 public class FirefoxTest {
     private static final String EPAM = "EPAM";
     private static final String URL = "https://google.com";
@@ -27,7 +25,6 @@ public class FirefoxTest {
 
     @Test(dataProvider = "Browser")
     public void runSearch(DriverTypes browser){
-
         driver = manager.getDriver(browser);
         driver.get(URL);
         HomePage home = new HomePage(driver);
@@ -37,6 +34,7 @@ public class FirefoxTest {
 
     @AfterMethod()
     public void cleanUp() {
-        manager.closeDriver();
+        manager.quitDriver();
     }
+
 }

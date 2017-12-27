@@ -13,9 +13,6 @@ public class HomePage extends BasePage {
     @FindBy(id = "lst-ib")
     public WebElement searchInput;
 
-    @FindBy(xpath = "//a[@class='gb_Ba gb_wd gb_fd' and contains(text(), 'NOT INTERESTED')]")
-    public WebElement ie;
-
     public ResultPage runSearch(String criteria) {
         searchInput.clear();
         searchInput.sendKeys(criteria);
