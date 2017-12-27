@@ -2,19 +2,19 @@ package com.epam.grid.core.driver;
 
 import org.openqa.selenium.WebDriver;
 
-import static com.epam.grid.core.driver.CreatorRemoteDriver.create;
-
 public class DriverManager {
-    private static WebDriver driver;
+    private WebDriver driver;
 
-    public static WebDriver getDriver(DriverTypes name) {
+    public WebDriver getDriver(DriverTypes name) {
         if (driver == null) {
-            driver = create(name);
+            driver = new CreatorRemoteDriver().create(name);
         }
         return driver;
     }
 
-    public static void closeDriver() {
-       driver = null;
+    public void closeDriver() {
+//        driver.quit();
+        driver.close();
+        driver = null;
     }
 }

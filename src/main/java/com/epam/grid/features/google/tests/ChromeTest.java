@@ -1,5 +1,6 @@
 package com.epam.grid.features.google.tests;
 
+import com.epam.grid.core.driver.DriverManager;
 import com.epam.grid.core.driver.DriverTypes;
 import com.epam.grid.features.google.pages.HomePage;
 import com.epam.grid.features.google.pages.ResultPage;
@@ -9,13 +10,12 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import static com.epam.grid.core.driver.DriverManager.closeDriver;
-import static com.epam.grid.core.driver.DriverManager.getDriver;
 
 public class ChromeTest {
     private static final String EPAM = "EPAM";
     private static final String URL = "https://google.com";
-    private static WebDriver driver;
+    private WebDriver driver;
+    private DriverManager manager = new DriverManager();
 
     @DataProvider(name = "Browser")
     public static Object[][] credentials() {
@@ -26,7 +26,7 @@ public class ChromeTest {
 
     @Test(dataProvider = "Browser")
     public void runSearch(DriverTypes browser){
-        driver = getDriver(browser);
+        driver = manager.getDriver(browser);
         driver.get(URL);
         HomePage home = new HomePage(driver);
         ResultPage result = home.runSearch(EPAM);
@@ -35,8 +35,6 @@ public class ChromeTest {
 
     @AfterMethod()
     public void cleanUp() {
-        driver.close();
-        driver = null;
-        closeDriver();
+        manager.closeDriver();
     }
 }

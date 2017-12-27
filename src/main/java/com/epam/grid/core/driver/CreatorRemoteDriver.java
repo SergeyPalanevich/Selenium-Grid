@@ -14,19 +14,15 @@ class CreatorRemoteDriver {
     private static final String HUB = "http://localhost:4444/wd/hub";
     private static final long TIME_OUT = 20;
 
-    public static WebDriver create(DriverTypes name) throws NoSuchWebDriverExeption {
-        WebDriver driver = null;
+    public WebDriver create(DriverTypes name) throws NoSuchWebDriverExeption {
+        WebDriver driver;
 
         switch (name) {
             case CHROME:
                 try {
                     DesiredCapabilities capabilities = DesiredCapabilities.chrome();
                     driver = new RemoteWebDriver(new URL(HUB), capabilities);
-                    driver.manage().timeouts().implicitlyWait(TIME_OUT, TimeUnit.SECONDS);
-                    driver.manage().timeouts().pageLoadTimeout(TIME_OUT, TimeUnit.SECONDS);
-                    driver.manage().timeouts().setScriptTimeout(TIME_OUT, TimeUnit.SECONDS);
-                    driver.manage().window().maximize();
-                    return driver;
+                    break;
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
@@ -34,17 +30,20 @@ class CreatorRemoteDriver {
                 try {
                     DesiredCapabilities capabilities = DesiredCapabilities.firefox();
                     driver = new RemoteWebDriver(new URL(HUB), capabilities);
-                    driver.manage().timeouts().implicitlyWait(TIME_OUT, TimeUnit.SECONDS);
-                    driver.manage().timeouts().pageLoadTimeout(TIME_OUT, TimeUnit.SECONDS);
-                    driver.manage().timeouts().setScriptTimeout(TIME_OUT, TimeUnit.SECONDS);
-                    driver.manage().window().maximize();
-                    return driver;
+                    break;
                 } catch (MalformedURLException e) {
                     e.printStackTrace();
                 }
+             default:
+                 throw new NoSuchWebDriverExeption("test");
         }
 
+        driver.manage().timeouts().implicitlyWait(TIME_OUT, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(TIME_OUT, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(TIME_OUT, TimeUnit.SECONDS);
+        driver.manage().window().maximize();
         return driver;
+
     }
 
 }
